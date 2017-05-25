@@ -23,7 +23,7 @@ class Marry:
             await self.bot.say(embed=em0)
         else:
                 desc = ":ring:" + author + " *has proposed to* " + user.name + ":ring:"
-                name = ":church:" + user.name + ",  Do you accept ? :church:"
+                name = ":church:" + user.name + ",  Do you accept? :church:"
                 em = discord.Embed(description=desc, color=0XF23636)
                 em.add_field(name=name, value='Type yes to accept or no to decline.')
                 await self.bot.say(embed=em)
@@ -52,11 +52,11 @@ class Marry:
             if user.name in self.data[server.id]["user"][author]["married_to"]:
                 await self._divorce(server, ctx, user)
                 me = ctx.message.author.name
-                msg = ':broken_heart:  ' + me + ' *has divorced to* ' + user.name + ' :broken_heart:'
+                msg = ':broken_heart:  ' + me + ' *has divorced* ' + user.name + ' :broken_heart:'
                 em = discord.Embed(description=msg, color=0XF23636)
                 await self.bot.say(embed=em)
             else:
-                msg = 'You can\'t divorce to the user because you aren\'t married to him.'
+                msg = 'You can\'t divorce to the user because you aren\'t married to them.'
                 em = discord.Embed(description=msg, color=0XF23636)
                 await self.bot.say(embed=em)
 
@@ -69,15 +69,23 @@ class Marry:
         if user is None:
             user = author
 
-        if server.id not in self.data:
+        if user.name not in self.data[server.id]["user"]:
+            await self.bot.say("That person isn't married to anyone.")
+            return
+
+        mlist = (list(self.data[server.id]["user"][user.name]["married_to"]))
+        names = ', '.join(map(str, mlist))
+
+        if not mlist:
+            await self.bot.say("That person isn't married to anyone.")
+
+        elif server.id not in self.data:
             await self.bot.say("No marriages on this server yet.")
 
         elif user.name not in self.data[server.id]["user"]:
             await self.bot.say("That person isn't married to anyone.")
 
         else:
-            mlist = (list(self.data[server.id]["user"][user.name]["married_to"]))
-            names = ', '.join(map(str, mlist))
             em = discord.Embed(description="", color=0XF23636)
             em.add_field(name='Married to:', value=names)
             await self.bot.say(embed=em)
