@@ -69,6 +69,10 @@ class Marry:
         if user is None:
             user = author
 
+        if server.id not in self.data:
+            await self.bot.say("No marriages on this server yet.")
+            return
+
         if user.name not in self.data[server.id]["user"]:
             await self.bot.say("That person isn't married to anyone.")
             return
@@ -78,9 +82,6 @@ class Marry:
 
         if not mlist:
             await self.bot.say("That person isn't married to anyone.")
-
-        elif server.id not in self.data:
-            await self.bot.say("No marriages on this server yet.")
 
         elif user.name not in self.data[server.id]["user"]:
             await self.bot.say("That person isn't married to anyone.")
