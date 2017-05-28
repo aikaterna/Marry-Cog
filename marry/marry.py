@@ -18,7 +18,7 @@ class Marry:
         author1 = ctx.message.author.mention
         author = ctx.message.author.name
         if user.mention == author1:
-            msg = 'You can\'t get married to yourself crazy guy.'
+            msg = 'You can\'t get married to yourself, crazy guy.'
             em0 = discord.Embed(description=msg, color=0XF23636)
             await self.bot.say(embed=em0)
         else:
