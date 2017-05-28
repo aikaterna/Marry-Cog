@@ -46,7 +46,7 @@ class Marry:
         author = ctx.message.author.name
         server = ctx.message.server
         if user.mention == author:
-            em0 = discord.Embed(description='You cant\'t divorce to yourself crazy guy!', color=0XF23636)
+            em0 = discord.Embed(description='You cant\'t divorce yourself, crazy guy!', color=0XF23636)
             await self.bot.say(embed=em0)
         else:
             if user.name in self.data[server.id]["user"][author]["married_to"]:
@@ -56,7 +56,7 @@ class Marry:
                 em = discord.Embed(description=msg, color=0XF23636)
                 await self.bot.say(embed=em)
             else:
-                msg = 'You can\'t divorce to the user because you aren\'t married to them.'
+                msg = 'You can\'t divorce that user because you aren\'t married to them.'
                 em = discord.Embed(description=msg, color=0XF23636)
                 await self.bot.say(embed=em)
 
