@@ -50,7 +50,8 @@ class Marry:
             await self.bot.say(embed=em0)
         else:
             if server.id not in self.data:
-                await self.bot.say("No marriages on this server yet.")
+                em = discord.Embed(description='No marriages on this server yet.', color=0XF23636)
+                await self.bot.say(embed=em)
                 return
 
             if user.name in self.data[server.id]["user"][author]["married_to"]:
@@ -74,21 +75,25 @@ class Marry:
             user = author
 
         if server.id not in self.data:
-            await self.bot.say("No marriages on this server yet.")
+            em = discord.Embed(description='No marriages on this server yet.', color=0XF23636)
+            await self.bot.say(embed=em)
             return
 
         if user.name not in self.data[server.id]["user"]:
-            await self.bot.say("That person isn't married to anyone.")
+            em = discord.Embed(description='That person isn\'t married to anyone.', color=0XF23636)
+            await self.bot.say(embed=em)
             return
 
         mlist = (list(self.data[server.id]["user"][user.name]["married_to"]))
         names = ', '.join(map(str, mlist))
 
         if not mlist:
-            await self.bot.say("That person isn't married to anyone.")
+            em = discord.Embed(description='That person isn\'t married to anyone.', color=0XF23636)
+            await self.bot.say(embed=em)
 
         elif user.name not in self.data[server.id]["user"]:
-            await self.bot.say("That person isn't married to anyone.")
+            em = discord.Embed(description='That person isn\'t married to anyone.', color=0XF23636)
+            await self.bot.say(embed=em)
 
         else:
             em = discord.Embed(description="", color=0XF23636)
