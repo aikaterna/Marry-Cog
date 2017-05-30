@@ -53,11 +53,7 @@ class Marry:
                 await self.bot.say("No marriages on this server yet.")
                 return
 
-            mlist = (list(self.data[server.id]["user"][user.name]["married_to"]))
-
-            if not mlist:
-                await self.bot.say("You can\'t divorce that user because you aren\'t married to them.")
-            elif user.name in self.data[server.id]["user"][author]["married_to"]:
+            if user.name in self.data[server.id]["user"][author]["married_to"]:
                 await self._divorce(server, ctx, user)
                 me = ctx.message.author.name
                 msg = ':broken_heart:  ' + me + ' *has divorced* ' + user.name + ' :broken_heart:'
