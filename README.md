@@ -1,8 +1,11 @@
 # Marry-Cog
-A marry cog for red discord bot.
+A marry cog for Red-DiscordBot.
 
-You can marry someone to you by doing : [p]marry @user
+You can marry someone by using: [p]marry @user
 
-You can also divorced to them by doing : [p]divorce @user
+You can divorce someone by using: [p]divorce @user
 
-That cog don't need dependencies or addons.
+Display who you or another user is married to by using: [p]mlist @user
+Defaults to author if no user given.
+ 
+This cog has no dependencies to install.
